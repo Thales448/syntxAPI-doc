@@ -1,0 +1,114 @@
+---
+sidebar_position: 1
+---
+
+# Quick Start
+
+Welcome to **SyntxAPI** — your gateway to professional-grade, research-ready financial data. This guide will get you up and running in just a few minutes, from authentication to your first real data query.
+
+> **Goal**: Connect to the API, authenticate your key, and retrieve real-time options data.
+
+---
+
+:::tip Getting Started
+You'll be up and running in 3 steps: Grab your key, authenticate, and start querying real-time data.
+:::
+
+## 🚀 Step 1: Get Your API Key
+
+To begin using SyntxAPI, you'll need an API key. It should have been sent to your email address after registration. 
+
+- Please allow up to **30 minutes** for processing.
+- Didn't get one? [Request a new API key](#) here.
+
+---
+
+:::info What is an Access Token?
+SyntxAPI uses a token-based authentication system. Your API key generates a single-use token that must be attached to all future requests.
+:::
+
+## 🔐 Step 2: Authenticate Your API Key
+
+Use your API key to generate an **access token**. This token must be included in the headers of every API request.
+
+> ⚠️ **One token per key** — generating a new token will revoke the previous one.
+
+### Authentication Request
+
+Replace `<API_KEY>` with your actual key:
+
+**Browser**:
+```bash
+https://api.syntxapp.com/auth?<API_KEY>
+```
+
+**Terminal (curl)**:
+```bash
+curl -X GET 'https://api.syntxapp.com/auth?<API_KEY>'
+```
+
+### Example Response
+```json
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6..."
+}
+```
+
+---
+
+:::caution Remember
+If you request a new token, any previously issued token will be **revoked**.
+:::
+
+## 📈 Step 3: Send Your First Request
+
+Once you have your token, you're ready to query live market data.
+
+### 🧪 Example: Retrieve AAPL Options Expiring This Week
+
+:::tip Supported Languages
+The following examples use Python, JavaScript, Ruby, and C#. More languages coming soon!
+:::
+
+```python
+import requests
+
+url = "https://api.syntxapp.com/api/v1/current/options/quote"
+params = {
+    "symbol": "AAPL",
+    "expiration": "20240404"
+}
+headers = {
+    "Authorization": "Bearer {TOKEN}",
+    "Accept": "application/json"
+}
+
+response = requests.get(url, params=params, headers=headers)
+print(response.json())
+```
+
+### Expected Output
+A JSON dictionary containing real-time bid/ask prices, volumes, open interest, and implied volatility for AAPL options expiring on 2024-04-04.
+
+---
+
+## 🛠️ Troubleshooting
+
+- ✅ Make sure your token is set in the `Authorization` header.
+- 🕵️ Check that your API key hasn’t expired or been revoked.
+- 📘 See the [Full API Reference](#) and [Request Guide](#) for advanced usage.
+
+---
+
+## ✅ Next Steps
+
+Now that you're authenticated and querying, try exploring other endpoints:
+
+- `/chain` for full option chains
+- `/historical` for archived tick-level data
+- `/greeks` for delta, gamma, theta, vega
+- `/stats` for volume, volatility, and more
+
+Happy querying! 🎯
+
+**SyntxAPI — Built for Research. Ready for Production.**
