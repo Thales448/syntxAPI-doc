@@ -1,5 +1,4 @@
 # SyntxAPI Documentation
 
-This documentation is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
+This documentation is built using [Docusaurus](https://docusaurus.io/), It documents the request commands for the SYNTX API
 
-### To contribute sedn a pull request
